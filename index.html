@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#181A1C">
+<title>Pe̍h-ōe-jī Layout Script</title>
+<meta name="description" content="An Adobe Illustrator script for Taigi text in POJ and Han-Lo: no hyphen at the start or end of a line, kinsoku, Han–Lo spacing and a composer that places tone marks correctly. One click, every option adjustable.">
+<link rel="stylesheet" href="site.css">
+<link rel="alternate" hreflang="en" href="https://pehoejikesi.github.io/PehoejiLayoutScript/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://pehoejikesi.github.io/PehoejiLayoutScript/zh/">
+</head>
+<body>
+<a class="skip" href="#problem">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Pe̍h-ōe-jī Layout Script</a>
+    <nav class="nav-links">
+      <a href="#problem">Why</a>
+      <a href="#features">Features</a>
+      <a href="#examples">Examples</a>
+      <a href="#options">Options</a>
+      <a href="#install">Install</a>
+      <a class="gh" href="https://github.com/PehoejiKesi/PehoejiLayoutScript">GitHub</a>
+    </nav>
+    <a class="lang" href="zh/" lang="zh-Hant-TW" hreflang="zh-Hant-TW">中文</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Adobe Illustrator script · Taigi POJ / Han-Lo · v0.9.0 beta</p>
+      <h1>Pe̍h-ōe-jī Layout Script</h1>
+      <p class="lead">Clean line breaks and even spacing for Taigi text in POJ and Han-Lo. No more lines starting with “-”, one click for the whole document, every setting adjustable.</p>
+      <div class="cta">
+        <a class="btn primary" href="Pe%CC%8Dh-%C5%8De-j%C4%AB%20Layout%20Script.jsx" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          Download the script
+        </a>
+        <a class="btn" href="https://github.com/PehoejiKesi/PehoejiLayoutScript">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <p class="meta">Version 0.9.0 (beta) · <a href="https://github.com/PehoejiKesi/PehoejiLayoutScript/blob/main/CHANGELOG.md">What's new</a> · For Adobe Illustrator 2020 or later · macOS and Windows · one .jsx file, free · <a href="#other-apps">also for InDesign and Affinity</a></p>
+    </div>
+
+    <figure class="compare" style="margin:0">
+      <figcaption class="sr-only">Before: Illustrator splits 出--來 and chhut--lâi so the next line starts with a hyphen. After: the script keeps each hyphenated word together, in Han-Lo and in POJ.</figcaption>
+      <div class="card">
+        <span class="tag bad">Before</span>
+        <p class="scr">Han-Lo</p>
+        <div class="sample lay" data-pair="hero-hl" data-role="off" data-nb="off" aria-hidden="true" lang="nan-TW" style="width:12.75em">第一，伊ē-tàng完全正確表達台語。講ē出--來tō寫ē出--來，寫ē出--來tio̍h讀ē出--來。</div>
+        <p class="scr">POJ</p>
+        <div class="sample lay" data-pair="hero-poj" data-role="off" data-nb="off" aria-hidden="true" lang="nan-TW" style="width:12.75em">Kóng ē chhut--lâi tio̍h siá ē chhut--lâi, siá ē chhut--lâi tio̍h tha̍k ē chhut--lâi.</div>
+        <p class="cap">Illustrator moves the hyphen to the next line.</p>
+      </div>
+      <div class="card">
+        <span class="tag good">After</span>
+        <p class="scr">Han-Lo</p>
+        <div class="sample lay" data-pair="hero-hl" data-role="on" data-ok="nb" aria-hidden="true" lang="nan-TW" style="width:12.75em">第一，伊ē-tàng完全正確表達台語。講ē出--來tō寫ē出--來，寫ē出--來tio̍h讀ē出--來。</div>
+        <p class="scr">POJ</p>
+        <div class="sample lay" data-pair="hero-poj" data-role="on" data-ok="nb" aria-hidden="true" lang="nan-TW" style="width:12.75em">Kóng ē chhut--lâi tio̍h siá ē chhut--lâi, siá ē chhut--lâi tio̍h tha̍k ē chhut--lâi.</div>
+        <p class="cap">Each hyphenated word stays together.</p>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="wrap">
+    <p class="eyebrow">The problem</p>
+    <h2>Illustrator wasn't built for Taigi</h2>
+    <p class="muted" style="max-width:760px">Illustrator's text engine was designed for English, Chinese and Japanese. Taigi in POJ or Han-Lo falls in between: Roman letters with tone marks, syllables joined by hyphens, and Hanji on the same line. Out of the box, Illustrator breaks lines at those hyphens and leaves “-” at the start or end of a line, can place tone marks such as a̍ beside their letter instead of on it, and spaces Hanji and Roman letters unevenly.</p>
+    <p class="muted" style="max-width:760px">Much of this can be fixed by hand, but the settings are spread over several panels and dialogs (kinsoku, composers, No Break, justification, tracking), and few people know which ones matter or how they affect each other. Some can't be fixed with settings at all: the obvious fix, putting “-” in both lists of a kinsoku set, makes Illustrator push the hyphen down to the next line instead.</p>
+    <p class="muted" style="max-width:760px">The script does it for you. One run applies tested settings to the whole document and keeps each hyphenated word on one line with <strong>No Break</strong>. Anything you untick is left exactly as it was.</p>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow">What it does</p>
+    <h2>Everything POJ and Han-Lo text needs, in one run</h2>
+    <div class="grid3">
+      <div class="feat"><div class="ico">斷</div><h3>Line breaking</h3><p>No Break on every hyphenated word, Illustrator's Hard kinsoku rules for punctuation (built into the script, so they work in any language), and Illustrator's own hyphenation turned off so it can't add hyphens that look like Taigi ones.</p></div>
+      <div class="feat"><div class="ico">a̍</div><h3>Tone marks in place</h3><p>Switches paragraphs to the Middle Eastern &amp; South Asian Every-line Composer, which positions combining marks such as a̍, o͘ and ǹ correctly.</p></div>
+      <div class="feat"><div class="ico">漢</div><h3>Han–Lo spacing</h3><p>A small gap wherever Hanji meet Roman letters, without typing spaces. The text itself stays correct Han-Lo spelling.</p></div>
+      <div class="feat"><div class="ico">-</div><h3>Tighter hyphens</h3><p>CJK fonts often give “-” loose sidebearings, so <span style="font-family:var(--serif)">ē-tàng</span> reads like <span style="font-family:var(--serif)">ē - tàng</span>. The script pulls syllables back together.</p></div>
+      <div class="feat"><div class="ico">≡</div><h3>Justification and leading</h3><p>Alignment, word and letter spacing limits, and auto leading, set across the document. The defaults match a typical justified book page.</p></div>
+      <div class="feat"><div class="ico">✓</div><h3>Check report</h3><p>After running, it lists any line that still starts or ends with “-”, starts with ，。」, or looks loose, and saves the list to your Desktop.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="dialog">
+  <div class="wrap">
+    <p class="eyebrow">The dialog</p>
+    <h2>Turn each option on or off, change any number</h2>
+    <p class="muted" style="max-width:760px">Your last choices are remembered. <strong>Defaults</strong> restores the original values, and anything unticked is left exactly as it is in your document.</p>
+
+    <div class="dlg" role="img" aria-label="Replica of the script's dialog window with five panels of options">
+      <div class="dlg-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dlg-title">Pe̍h-ōe-jī Layout Script</span></div>
+      <div class="dlg-scope"><span class="pnl-t2">Apply to</span><span class="rb"></span>Whole document <span class="rb on"></span>Selected text only (2 text frames)</div>
+      <div class="dlg-body">
+        <div>
+          <div class="pnl"><span class="pnl-t">A. Line breaking</span>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>1&nbsp; Kinsoku: Hard rules</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>2&nbsp; No Break on hyphenated words</div></div>
+            <div class="opt sub"><div class="opt-row"><span class="cb on"></span>2a&nbsp; First clear No Break from all text</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>3&nbsp; Middle Eastern &amp; South Asian Every-line Composer</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>4&nbsp; Turn auto-hyphenation off</div></div>
+          </div>
+          <div class="pnl"><span class="pnl-t">B. Justification &amp; leading</span>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>5&nbsp; Alignment
+              <span class="al" aria-hidden="true">
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="13" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="10" height="2"/></svg></span>
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect x="4" y="5" width="12" height="2"/><rect y="9" width="20" height="2"/><rect x="5" y="13" width="10" height="2"/></svg></span>
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect x="7" y="5" width="13" height="2"/><rect y="9" width="20" height="2"/><rect x="10" y="13" width="10" height="2"/></svg></span>
+                <span class="on"><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="10" height="2"/></svg></span>
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect x="5" y="13" width="10" height="2"/></svg></span>
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect x="10" y="13" width="10" height="2"/></svg></span>
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="20" height="2"/></svg></span>
+              </span></div>
+              <p class="dsc">Justify with last line aligned left</p></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>6&nbsp; Word spacing min <span class="fld">80</span> desired <span class="fld">150</span> max <span class="fld">200</span> %</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>7&nbsp; Letter spacing min <span class="fld">0</span> desired <span class="fld">10</span> max <span class="fld">50</span> %</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>8&nbsp; Auto leading <span class="fld">133</span> % of font size</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="pnl"><span class="pnl-t">C. Punctuation</span>
+            <div class="opt"><div class="opt-row"><span class="cb"></span>9&nbsp; Hanging punctuation (Burasagari)</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb"></span>10&nbsp; Mojikumi set <span class="fld dd" style="min-width:120px">YakumonoHankaku</span></div></div>
+          </div>
+          <div class="pnl"><span class="pnl-t">D. Spacing (tracking, 1/1000 em)</span>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>11&nbsp; Kerning: Auto (metrics)</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>12&nbsp; Roman Orthography tracking <span class="fld">5</span></div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>13&nbsp; Han–Lo space <span class="fld">100</span></div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>14&nbsp; Hyphen tightening <span class="fld">-30</span></div></div>
+            <div class="opt sub"><div class="opt-row"><span class="cb"></span>14a&nbsp; First reset all tracking to 0</div></div>
+          </div>
+          <div class="pnl"><span class="pnl-t">E. Check</span>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>15&nbsp; Check report after running</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dlg-foot"><span class="dlg-btn">Defaults</span><span style="flex:1"></span><span class="dlg-btn">Cancel</span><span class="dlg-btn def">Run</span></div>
+    </div>
+    <p class="small muted" style="text-align:center;margin-top:10px">Simplified: the real dialog also shows a short grey description under each option.</p>
+  </div>
+</section>
+
+<section id="examples">
+  <div class="wrap">
+    <p class="eyebrow">Examples</p>
+    <h2>Every option, before and after</h2>
+    <p class="muted" style="max-width:760px">Each card shows the same text with the option off and on, in POJ, Han-Lo or both. The dashed line is the right margin of the text frame. The line breaks are simulated in your browser, so Illustrator's exact spacing will differ a little. The Taigi sample text is by <span lang="nan-TW">Tân Lûi</span> (<span lang="zh-Hant-TW">陳雷</span>), used with permission; see <a href="#rights">the note below</a>.</p>
+
+    <h3 class="grp-h">A. Line breaking</h3>
+    <div class="ex-grid">
+      <div class="card ex">
+        <h4><span class="num">1</span>Kinsoku: Hard rules</h4>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">Off</span><div class="box lay" data-pair="e1" data-role="off" data-kin="off" lang="nan-TW" style="width:9.75em">第二，伊真容易學。字母ē曉，聲調lia̍h準，tio̍h ē曉--ah。</div></div>
+        <div class="demo"><span class="lbl">On</span><div class="box lay" data-pair="e1" data-role="on" data-ok="kin" lang="nan-TW" style="width:9.75em">第二，伊真容易學。字母ē曉，聲調lia̍h準，tio̍h ē曉--ah。</div></div>
+        <p class="cap">A comma can't start a line, so it moves down together with the character before it. POJ breaks only at spaces, so its punctuation already stays with its word.</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">2</span>No Break on hyphenated words</h4>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">Off</span><div class="box lay" data-pair="e2-hl" data-role="off" data-nb="off" lang="nan-TW" style="width:9.25em">已經ē曉講台語ê人，幾點鐘、幾日tio̍h學有。Kap漢字比--起-來，天差地。</div></div>
+        <div class="demo"><span class="lbl">On</span><div class="box lay" data-pair="e2-hl" data-role="on" data-ok="nb" lang="nan-TW" style="width:9.25em">已經ē曉講台語ê人，幾點鐘、幾日tio̍h學有。Kap漢字比--起-來，天差地。</div></div>
+        <p class="scr">POJ</p>
+        <div class="demo"><span class="lbl">Off</span><div class="box lay" data-pair="e2-poj" data-role="off" data-nb="off" lang="nan-TW" style="width:12.5em">Kap hàn-jī pí--khí-lâi, thiⁿ-chha-tē. Hàn-jī sī siá Tiong-kok-ōe iōng--ê.</div></div>
+        <div class="demo"><span class="lbl">On</span><div class="box lay" data-pair="e2-poj" data-role="on" data-ok="nb" lang="nan-TW" style="width:12.5em">Kap hàn-jī pí--khí-lâi, thiⁿ-chha-tē. Hàn-jī sī siá Tiong-kok-ōe iōng--ê.</div></div>
+        <p class="cap">The hyphenated word moves down as a whole, so “-” never starts or ends a line.</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">2a</span>First clear No Break</h4>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">Problem</span><div class="box lay" data-pair="e2a-hl" data-role="prob" lang="nan-TW" style="width:11.5em">字母ē曉，聲調lia̍h準，tio̍h ē曉--ah<span class="stuck">。已經ē曉講台語ê人</span></div></div>
+        <div class="demo"><span class="lbl">On</span><div class="box lay" data-pair="e2a-hl" data-role="on" lang="nan-TW" style="width:11.5em">字母ē曉，聲調lia̍h準，tio̍h ē曉--ah。已經ē曉講台語ê人</div></div>
+        <p class="scr">POJ</p>
+        <div class="demo"><span class="lbl">Problem</span><div class="box lay" data-pair="e2a-poj" data-role="prob" lang="nan-TW" style="width:12em">Jī-bó ē-hiáu, siaⁿ-tiāu lia̍h-chún, tio̍h ē-hiáu--ah<span class="stuck">. Í-keng ē-hiáu</span></div></div>
+        <div class="demo"><span class="lbl">On</span><div class="box lay" data-pair="e2a-poj" data-role="on" lang="nan-TW" style="width:12em">Jī-bó ē-hiáu, siaⁿ-tiāu lia̍h-chún, tio̍h ē-hiáu--ah. Í-keng ē-hiáu</div></div>
+        <p class="cap">Text typed after “--ah” copied its No Break and can't wrap. Clearing No Break first, then re-applying it to hyphenated words only, fixes it.</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">3</span>Middle Eastern &amp; South Asian Composer</h4>
+        <p class="scr">POJ</p>
+        <div class="demo"><span class="lbl">Off</span><div class="box free sim" lang="nan-TW">tha<span class="drift">ˈ</span>k · lia<span class="drift">ˈ</span>h-chún · ha<span class="drift">ˈ</span>p-lí</div></div>
+        <div class="demo"><span class="lbl">On</span><div class="box free" lang="nan-TW">tha̍k · lia̍h-chún · ha̍p-lí</div></div>
+        <p class="cap">With some composers, combining tone marks such as a̍ drift beside their letter instead of sitting on it (simulated). Han-Lo text with tone marks is affected the same way.</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">4</span>Auto-hyphenation off</h4>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">Off</span><div class="box lay" data-pair="e4-hl" data-role="off" data-ah="on" lang="nan-TW" style="width:7.5em">台文ê將來應該是全羅馬字chi&shy;ah合理。</div></div>
+        <div class="demo"><span class="lbl">On</span><div class="box lay" data-pair="e4-hl" data-role="on" lang="nan-TW" style="width:7.5em">台文ê將來應該是全羅馬字chi&shy;ah合理。</div></div>
+        <p class="scr">POJ</p>
+        <div class="demo"><span class="lbl">Off</span><div class="box lay" data-pair="e4-poj" data-role="off" data-ah="on" lang="nan-TW" style="width:9em">Lî-chhiáⁿ Lô-má-jī kap kok-chióng kok-chè gú-giân bûn-jī ke chin iông-ī thong-chi&shy;ap.</div></div>
+        <div class="demo"><span class="lbl">On</span><div class="box lay" data-pair="e4-poj" data-role="on" lang="nan-TW" style="width:9em">Lî-chhiáⁿ Lô-má-jī kap kok-chióng kok-chè gú-giân bûn-jī ke chin iông-ī thong-chi&shy;ap.</div></div>
+        <p class="cap">Illustrator's English hyphenation splits Roman words, and the “-” it adds looks just like a Taigi hyphen. Without it a narrow column can get a loose line, as in the POJ sample; fix that with a small edit.</p>
+      </div>
+    </div>
+
+    <h3 class="grp-h">B. Justification and leading</h3>
+    <div class="ex-grid">
+      <div class="card ex">
+        <h4><span class="num">5</span>Alignment</h4>
+        <div class="icons" aria-hidden="true">
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="13" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="10" height="2"/></svg>
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect x="4" y="5" width="12" height="2"/><rect y="9" width="20" height="2"/><rect x="5" y="13" width="10" height="2"/></svg>
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect x="7" y="5" width="13" height="2"/><rect y="9" width="20" height="2"/><rect x="10" y="13" width="10" height="2"/></svg>
+          <svg class="on" viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="10" height="2"/></svg>
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect x="5" y="13" width="10" height="2"/></svg>
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect x="10" y="13" width="10" height="2"/></svg>
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="20" height="2"/></svg>
+        </div>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">Left</span><div class="box lay" data-pair="e5-hl" data-role="left" data-align="left" lang="nan-TW" style="width:10.75em">漢字是寫中國話用--ê，bē-tàng完全koh正確寫台語。</div></div>
+        <div class="demo"><span class="lbl">Justify</span><div class="box lay" data-pair="e5-hl" data-role="justify" lang="nan-TW" style="width:10.75em">漢字是寫中國話用--ê，bē-tàng完全koh正確寫台語。</div></div>
+        <p class="scr">POJ</p>
+        <div class="demo"><span class="lbl">Left</span><div class="box lay" data-pair="e5-poj" data-role="left" data-align="left" lang="nan-TW" style="width:7.75em">Hàn-jī sī siá Tiong-kok-ōe iōng--ê, bē-tàng oân-choân koh chèng-khak siá Tâi-gú.</div></div>
+        <div class="demo"><span class="lbl">Justify</span><div class="box lay" data-pair="e5-poj" data-role="justify" lang="nan-TW" style="width:7.75em">Hàn-jī sī siá Tiong-kok-ōe iōng--ê, bē-tàng oân-choân koh chèng-khak siá Tâi-gú.</div></div>
+        <p class="cap">Default: justify with the last line aligned left, as in most book text.</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">6</span>Word spacing</h4>
+        <p class="scr">POJ</p>
+        <div class="demo"><span class="lbl">100%</span><div class="box free" lang="nan-TW">Iōng Lô-má-jī siá Tâi-gú ū chin chē iu-tiám.</div></div>
+        <div class="demo"><span class="lbl">150%</span><div class="box free" lang="nan-TW" style="word-spacing:.12em">Iōng Lô-má-jī siá Tâi-gú ū chin chē iu-tiám.</div></div>
+        <p class="cap">The desired width of a space. POJ has a space between every word, so this matters most there; Han-Lo has spaces only between Roman words.</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">7</span>Letter spacing</h4>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">0%</span><div class="box free" lang="nan-TW">第二，伊真容易學。</div></div>
+        <div class="demo"><span class="lbl">10%</span><div class="box free" lang="nan-TW" style="letter-spacing:.03em">第二，伊真容易學。</div></div>
+        <p class="scr">POJ</p>
+        <div class="demo"><span class="lbl">0%</span><div class="box free" lang="nan-TW">Tē-jī, i chin iông-ī o̍h.</div></div>
+        <div class="demo"><span class="lbl">10%</span><div class="box free" lang="nan-TW" style="letter-spacing:.03em">Tē-jī, i chin iông-ī o̍h.</div></div>
+        <p class="cap">Extra space between all characters in justified lines. The maximum (50%) is only used when a line has nothing else to stretch.</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">8</span>Auto leading</h4>
+        <p class="scr">POJ</p>
+        <div class="demo"><span class="lbl">110%</span><div class="box free" lang="nan-TW" style="line-height:1.1"><div>Í-keng ē-hiáu Tâi-gú ê lâng,</div><div>kúi tiám-cheng,</div><div>kúi-ji̍t tio̍h o̍h-ū.</div></div></div>
+        <div class="demo"><span class="lbl">133%</span><div class="box free" lang="nan-TW" style="line-height:1.45"><div>Í-keng ē-hiáu Tâi-gú ê lâng,</div><div>kúi tiám-cheng,</div><div>kúi-ji̍t tio̍h o̍h-ū.</div></div></div>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">110%</span><div class="box free" lang="nan-TW" style="line-height:1.1"><div>已經ē曉講台語ê人，</div><div>幾點鐘、幾日tio̍h學有。</div></div></div>
+        <div class="demo"><span class="lbl">133%</span><div class="box free" lang="nan-TW" style="line-height:1.45"><div>已經ē曉講台語ê人，</div><div>幾點鐘、幾日tio̍h學有。</div></div></div>
+        <p class="cap">Tone marks need room above the line. The script accepts 120% to 500%.</p>
+      </div>
+    </div>
+
+    <h3 class="grp-h">C. Punctuation (off by default, Han-Lo only)</h3>
+    <div class="ex-grid">
+      <div class="card ex">
+        <h4><span class="num">9</span>Hanging punctuation</h4>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">Off</span><div class="box lay" data-pair="e9" data-role="off" lang="nan-TW" style="width:8.75em">台文ê將來應該是全羅馬字chiah合理。而且羅馬字kap各種國際語言文字ke真容易thong-chiap。</div></div>
+        <div class="demo"><span class="lbl">On</span><div class="box lay" data-pair="e9" data-role="on" data-hang="on" lang="nan-TW" style="width:8.75em">台文ê將來應該是全羅馬字chiah合理。而且羅馬字kap各種國際語言文字ke真容易thong-chiap。</div></div>
+        <p class="cap">、。，． may sit just past the margin, so the right edge looks straighter. POJ's half-width punctuation doesn't hang.</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">10</span>Mojikumi set</h4>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">Off</span><div class="box free" lang="nan-TW">字母ē曉，聲調lia̍h準，tio̍h ē曉--ah。</div></div>
+        <div class="demo"><span class="lbl">On</span><div class="box free" lang="nan-TW">字母ē曉<span style="margin-right:-.5em">，</span>聲調lia̍h準<span style="margin-right:-.5em">，</span>tio̍h ē曉--ah。</div></div>
+        <p class="cap">Squeezes full-width punctuation to half width. Built-in sets are made for Japanese; Taiwan fonts centre ，。, so check the result by eye.</p>
+      </div>
+    </div>
+
+    <h3 class="grp-h">D. Spacing</h3>
+    <div class="ex-grid">
+      <div class="card ex">
+        <h4><span class="num">11</span>Kerning: Auto (metrics)</h4>
+        <p class="scr">POJ</p>
+        <div class="demo"><span class="lbl">Optical</span><div class="box free" lang="nan-TW"><span style="letter-spacing:-.1em">T</span>âi-gú · <span style="letter-spacing:-.1em">T</span>âi-bûn · <span style="letter-spacing:-.1em">T</span>ē-it</div></div>
+        <div class="demo"><span class="lbl">Auto</span><div class="box free" lang="nan-TW">Tâi-gú · Tâi-bûn · Tē-it</div></div>
+        <p class="cap">Optical kerning can tuck a marked letter under T until the mark touches it (simulated).</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">12</span>Roman Orthography tracking</h4>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">0</span><div class="box free" lang="nan-TW">伊ē-tàng完全正確表達台語。</div></div>
+        <div class="demo"><span class="lbl">+40</span><div class="box free" lang="nan-TW">伊<span style="letter-spacing:.04em">ē-tàng</span>完全正確表達台語。</div></div>
+        <p class="scr">POJ</p>
+        <div class="demo"><span class="lbl">0</span><div class="box free" lang="nan-TW">i ē-tàng oân-choân chèng-khak</div></div>
+        <div class="demo"><span class="lbl">+40</span><div class="box free" lang="nan-TW" style="letter-spacing:.04em">i ē-tàng oân-choân chèng-khak</div></div>
+        <p class="cap">Opens Roman letters slightly to match the lighter Hanji; Hanji are unchanged. Default +5 (shown here at +40 so you can see it).</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">13</span>Han–Lo space</h4>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">Off</span><div class="box free" lang="nan-TW">伊ē-tàng完全正確表達台語。</div></div>
+        <div class="demo"><span class="lbl">+100</span><div class="box free" lang="nan-TW"><span style="margin-right:.1em">伊</span>ē-tàn<span style="margin-right:.1em">g</span>完全正確表達台語。</div></div>
+        <p class="cap">1/10 em wherever Hanji meet Roman letters, in either order, without typing a space. POJ has no Hanji, so nothing changes there.</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">14</span>Hyphen tightening</h4>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">Off</span><div class="box free" lang="nan-TW">ē-tàng · 出--來 · 比--起-來</div></div>
+        <div class="demo"><span class="lbl">−30</span><div class="box free" lang="nan-TW"><span class="t">ē</span><span class="t">-</span>tàng · <span class="t">出</span><span class="t">-</span><span class="t">-</span>來 · <span class="t">比</span><span class="t">-</span><span class="t">-</span><span class="t">起</span><span class="t">-</span>來</div></div>
+        <p class="scr">POJ</p>
+        <div class="demo"><span class="lbl">Off</span><div class="box free" lang="nan-TW">Lô-má-jī · chhut--lâi · pí--khí-lâi</div></div>
+        <div class="demo"><span class="lbl">−30</span><div class="box free" lang="nan-TW">L<span class="t">ô</span><span class="t">-</span>m<span class="t">á</span><span class="t">-</span>jī · chhu<span class="t">t</span><span class="t">-</span><span class="t">-</span>lâi · p<span class="t">í</span><span class="t">-</span><span class="t">-</span>kh<span class="t">í</span><span class="t">-</span>lâi</div></div>
+        <p class="cap">Pulls syllables together around “-” and “--” inside Taigi words. Other hyphens, such as in -5, are left alone.</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">14a</span>First reset all tracking</h4>
+        <p class="scr">Han-Lo</p>
+        <div class="demo"><span class="lbl">Problem</span><div class="box free" lang="nan-TW"><span style="margin-right:.1em">伊</span>ē-tàn<span style="margin-right:.1em">g</span><span class="hit" style="letter-spacing:.1em">完全正確</span>表達台語。</div></div>
+        <div class="demo"><span class="lbl">On</span><div class="box free" lang="nan-TW"><span style="margin-right:.1em">伊</span>ē-tàn<span style="margin-right:.1em">g</span>完全正確表達台語。</div></div>
+        <p class="cap">完全正確 was typed after ē-tàng, whose last letter had the Han–Lo space, so each new character copied the gap. Reset clears it; the script then sets the gap again.</p>
+      </div>
+    </div>
+
+    <h3 class="grp-h">E. Check</h3>
+    <div class="ex-grid">
+      <div class="card ex wide">
+        <h4><span class="num">15</span>Check report</h4>
+        <p class="cap" style="margin:0 0 8px">After running, the summary lists lines worth a look, and the full list is saved to your Desktop:</p>
+<pre class="report" lang="nan-TW"><code>my-book.ai – Pe̍h-ōe-jī Layout Script 0.9.0
+starts with "-"   Text 3, line 12: --來tō寫ē出--來，
+ends with "-"     Text 4, line 7: Kóng ē chhut-
+starts with ，    Text 5, line 4: ，聲調lia̍h準，tio̍h ē曉--ah。
+possibly loose    Text 7, line 2: 漢字是寫中國話</code></pre>
+        <p class="cap">“Starts with -” usually means a text frame was locked or hidden, so it was skipped. “Possibly loose” is an estimate for justified lines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="options">
+  <div class="wrap">
+    <p class="eyebrow">Reference</p>
+    <h2>All options</h2>
+    <div class="tbl-wrap">
+    <table>
+      <caption>Defaults are what the dialog shows the first time, or after clicking Defaults.</caption>
+      <thead><tr><th scope="col">#</th><th scope="col">Option</th><th scope="col">Default</th><th scope="col">What it does</th></tr></thead>
+      <tbody>
+        <tr class="grp"><th colspan="4" scope="colgroup">A. Line breaking</th></tr>
+        <tr><td class="n">1</td><td>Kinsoku: Hard rules</td><td class="d"><span class="pill on">On</span></td><td>Punctuation such as ，。、」） can't start a line; 「（【 can't end one. The script carries a copy of Illustrator's Hard set and applies it with No Break, so it works in any language and isn't affected by the document's kinsoku sets.</td></tr>
+        <tr><td class="n">2</td><td>No Break on hyphenated words</td><td class="d"><span class="pill on">On</span></td><td>Keeps ē-tàng, chhut--lâi, 出--來, 比--起-來 together so “-” never starts or ends a line.</td></tr>
+        <tr><td class="n">2a</td><td>First clear No Break from all text</td><td class="d"><span class="pill on">On</span></td><td>Removes stray No Break picked up while typing. Also removes No Break you set by hand.</td></tr>
+        <tr><td class="n">3</td><td>Middle Eastern &amp; South Asian Every-line Composer</td><td class="d"><span class="pill on">On</span></td><td>Places combining tone marks correctly.</td></tr>
+        <tr><td class="n">4</td><td>Turn auto-hyphenation off</td><td class="d"><span class="pill on">On</span></td><td>Stops Illustrator adding its own hyphens.</td></tr>
+        <tr class="grp"><th colspan="4" scope="colgroup">B. Justification &amp; leading</th></tr>
+        <tr><td class="n">5</td><td>Alignment</td><td class="d"><span class="pill on">On · Justify, last line left</span></td><td>Seven choices, shown as the Paragraph panel's icons.</td></tr>
+        <tr><td class="n">6</td><td>Word spacing</td><td class="d"><span class="pill on">On · 80 / 150 / 200 %</span></td><td>How far spaces may shrink or stretch in justified lines.</td></tr>
+        <tr><td class="n">7</td><td>Letter spacing</td><td class="d"><span class="pill on">On · 0 / 10 / 50 %</span></td><td>How far characters may spread in justified lines.</td></tr>
+        <tr><td class="n">8</td><td>Auto leading</td><td class="d"><span class="pill on">On · 133 %</span></td><td>Line spacing as a share of the font size, 120% to 500%. Applies to all text, including headings, and replaces any fixed leading.</td></tr>
+        <tr class="grp"><th colspan="4" scope="colgroup">C. Punctuation</th></tr>
+        <tr><td class="n">9</td><td>Hanging punctuation</td><td class="d"><span class="pill off">Off</span></td><td>、。，． may sit past the right margin for a straighter edge. Hanging needs a kinsoku set, so this also sets Illustrator's built-in Hard set.</td></tr>
+        <tr><td class="n">10</td><td>Mojikumi set</td><td class="d"><span class="pill off">Off</span></td><td>Applies a named mojikumi set. Built-in sets are designed for Japanese punctuation.</td></tr>
+        <tr class="grp"><th colspan="4" scope="colgroup">D. Spacing (tracking, 1/1000 em)</th></tr>
+        <tr><td class="n">11</td><td>Kerning: Auto (metrics)</td><td class="d"><span class="pill on">On</span></td><td>Optical kerning can misjudge letters that carry tone marks.</td></tr>
+        <tr><td class="n">12</td><td>Roman Orthography tracking</td><td class="d"><span class="pill on">On · +5</span></td><td>A little space after every Roman letter; Hanji unchanged.</td></tr>
+        <tr><td class="n">13</td><td>Han–Lo space</td><td class="d"><span class="pill on">On · +100</span></td><td>A gap where Hanji meet Roman letters.</td></tr>
+        <tr><td class="n">14</td><td>Hyphen tightening</td><td class="d"><span class="pill on">On · −30</span></td><td>Pulls syllables closer around “-” and “--” inside Taigi words; other hyphens, such as in <code>-5</code>, are left alone.</td></tr>
+        <tr><td class="n">14a</td><td>First reset all tracking to 0</td><td class="d"><span class="pill off">Off</span></td><td>Clears stray spacing after editing. Also clears tracking you set by hand, such as on titles. Available when 12, 13 or 14 is on.</td></tr>
+        <tr class="grp"><th colspan="4" scope="colgroup">E. Check</th></tr>
+        <tr><td class="n">15</td><td>Check report after running</td><td class="d"><span class="pill on">On</span></td><td>Lists lines that start or end with “-”, start with ，。」, end with 「（, or look loose in justified text. When it finds any, it saves them to <code>peh-oe-ji-layout-report.txt</code> on your Desktop.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>Illustrator settings, and what the script works out itself</h2>
+    <p class="muted" style="max-width:760px">Some options set an ordinary Illustrator setting on all text, the same as you could do by hand in the Paragraph or Character panel. Others are worked out by the script character by character, which Illustrator can't do on its own.</p>
+    <div class="how">
+      <div class="card">
+        <h3>Illustrator settings</h3>
+        <p class="small muted">The same value on all text. Untick an option and your own setting stays.</p>
+        <ul class="how-list">
+          <li><span class="num">3</span><div><strong>Composer</strong><span>Middle Eastern &amp; South Asian Every-line Composer</span></div></li>
+          <li><span class="num">4</span><div><strong>Hyphenation off</strong><span>Paragraph › Hyphenation</span></div></li>
+          <li><span class="num">5</span><div><strong>Alignment</strong><span>Paragraph alignment</span></div></li>
+          <li><span class="num">6–7</span><div><strong>Word and letter spacing</strong><span>Justification: minimum, desired, maximum</span></div></li>
+          <li><span class="num">8</span><div><strong>Auto leading</strong><span>Auto leading and its percentage</span></div></li>
+          <li><span class="num">9</span><div><strong>Hanging punctuation</strong><span>Burasagari, plus Illustrator's built-in Hard kinsoku set, which hanging needs</span></div></li>
+          <li><span class="num">10</span><div><strong>Mojikumi</strong><span>Paragraph mojikumi set, from your document's list</span></div></li>
+          <li><span class="num">11</span><div><strong>Kerning</strong><span>Character kerning: Auto</span></div></li>
+          <li><span class="num">2a · 14a</span><div><strong>Resets</strong><span>No Break off, or tracking 0, on all text before the script sets them again</span></div></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Worked out by the script</h3>
+        <p class="small muted">The script reads the text and decides, character by character, where to apply No Break or tracking.</p>
+        <ul class="how-list">
+          <li><span class="num">1</span><div><strong>Kinsoku: Hard rules</strong><span>No Break on punctuation and its neighbour, from a copy of Illustrator's Hard set. Works in any language and ignores the document's kinsoku sets.</span></div></li>
+          <li><span class="num">2</span><div><strong>Hyphenated words</strong><span>No Break on each hyphenated Taigi word, in POJ and Han-Lo</span></div></li>
+          <li><span class="num">12</span><div><strong>Roman Orthography tracking</strong><span>Tracking on Roman letters only; Hanji unchanged</span></div></li>
+          <li><span class="num">13</span><div><strong>Han–Lo space</strong><span>Tracking only where Hanji meet Roman letters</span></div></li>
+          <li><span class="num">14</span><div><strong>Hyphen tightening</strong><span>Tracking around “-” and “--” inside Taigi words only</span></div></li>
+          <li><span class="num">15</span><div><strong>Check report</strong><span>Reads the finished lines and lists problems; changes nothing</span></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><strong>Run it again after editing.</strong> The script's results are saved in the document as ordinary No Break and tracking settings, so they stay when you save and reopen. Text you type later isn't covered until you run the script again, which is always safe.</div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <p class="eyebrow">Install</p>
+    <h2>Up and running in a minute</h2>
+    <ol class="steps">
+      <li class="step"><div><h3>Download the script</h3><p class="muted" style="margin:0"><a href="Pe%CC%8Dh-%C5%8De-j%C4%AB%20Layout%20Script.jsx" download>Pe̍h-ōe-jī Layout Script.jsx</a>: one file, nothing else to install. It works the same on macOS and Windows.</p></div></li>
+      <li class="step"><div><h3>Run it once, straight away</h3><p class="muted" style="margin:0">In Illustrator, open your document and choose <strong>File › Scripts › Other Script…</strong>, then pick the file. The shortcut is <kbd>⌘</kbd> <kbd>F12</kbd> on macOS and <kbd>Ctrl</kbd> <kbd>F12</kbd> on Windows. To work on part of the document, select those text frames first; the dialog then offers <strong>Whole document</strong> or <strong>Selected text only</strong>.</p></div></li>
+      <li class="step"><div><h3>Or add it to the Scripts menu</h3><p class="muted" style="margin:0">Copy the file into Illustrator's Scripts folder once, and it appears under <strong>File › Scripts</strong> every time. The folder belongs to the system, so copying asks for your password or administrator permission.</p>
+        <div class="plat">
+          <div class="card">
+            <h4>macOS</h4>
+            <ol>
+              <li>In Finder, open <strong>Applications › Adobe Illustrator <span class="ai-year">2026</span> › Presets › en_US › Scripts</strong>.</li>
+              <li>Drag the downloaded file into the <strong>Scripts</strong> folder. Click <strong>Authenticate</strong> and enter your Mac password.</li>
+              <li>Quit Illustrator and open it again.</li>
+            </ol>
+            <p class="small muted">Or paste this into Terminal (it asks for your password):</p>
+<pre><code>sudo cp ~/Downloads/*Layout\ Script.jsx "/Applications/Adobe Illustrator <span class="ai-year">2026</span>/Presets.localized/en_US/Scripts/"</code></pre>
+          </div>
+          <div class="card">
+            <h4>Windows</h4>
+            <ol>
+              <li>In File Explorer, open <strong>C:\Program Files\Adobe\Adobe Illustrator <span class="ai-year">2026</span>\Presets\en_US\Scripts</strong>.</li>
+              <li>Copy the downloaded file into that folder. When Windows asks for administrator permission, click <strong>Continue</strong>.</li>
+              <li>Quit Illustrator and open it again.</li>
+            </ol>
+            <p class="small muted">Or paste this into PowerShell opened with <strong>Run as administrator</strong>:</p>
+<pre><code>Copy-Item "$env:USERPROFILE\Downloads\*Layout Script.jsx" "C:\Program Files\Adobe\Adobe Illustrator <span class="ai-year">2026</span>\Presets\en_US\Scripts\"</code></pre>
+          </div>
+        </div>
+        <p class="small muted" style="margin:10px 0 0">Change <code><span class="ai-year">2026</span></code> to your Illustrator version and <code>en_US</code> to your language folder, for example <code>zh_TW</code> for Traditional Chinese. If the script isn't in the menu after restarting, check that you copied it into the folder for the language Illustrator runs in.</p></div></li>
+    </ol>
+    <div class="note"><strong>You still need a font that supports POJ.</strong> The script fixes the layout, not the letters. Choose a font that has every POJ character, such as a̍, o͘ and ⁿ, or some words will show boxes or misplaced tone marks. Check a few words before laying out a whole book.</div>
+    <div class="note"><strong>Before your first run:</strong> save a copy of the document. Undo can take several steps. Text that is locked or hidden, or sits on a locked or hidden layer or group, is skipped, so unlock it first.</div>
+  </div>
+</section>
+
+<section id="other-apps">
+  <div class="wrap">
+    <p class="eyebrow">Other apps</p>
+    <h2>Also for InDesign and Affinity</h2>
+    <p class="muted" style="max-width:760px">The same Taigi rules, with the same option numbers, for two more layout apps. Each is one file.</p>
+    <div class="plat">
+      <div class="card">
+        <h4>Adobe InDesign</h4>
+        <p class="small"><a href="Pe%CC%8Dh-%C5%8De-j%C4%AB%20Layout%20Script%20(InDesign).jsx" download>Pe̍h-ōe-jī Layout Script (InDesign).jsx</a> · tested with InDesign 2025</p>
+        <ol>
+          <li>Open <strong>Window › Utilities › Scripts</strong>, right-click the <strong>User</strong> folder and choose <strong>Reveal in Finder</strong> (Windows: <strong>Reveal in Explorer</strong>).</li>
+          <li>Copy the file into the <strong>Scripts Panel</strong> folder that opens.</li>
+          <li>Double-click the script in the Scripts panel.</li>
+        </ol>
+        <p class="small muted">All 15 options. Kinsoku set, composer and mojikumi set are chosen from lists. Every story, table cell and footnote is covered, and one Undo reverts the whole run. Hanging punctuation and mojikumi need a CJK composer (option 3).</p>
+      </div>
+      <div class="card">
+        <h4>Affinity</h4>
+        <p class="small"><a href="Pe%CC%8Dh-%C5%8De-j%C4%AB%20Layout%20Script%20(Affinity).js" download>Pe̍h-ōe-jī Layout Script (Affinity).js</a> · tested with Affinity 3.3</p>
+        <ol>
+          <li>Open the <strong>Scripts</strong> panel.</li>
+          <li>From the panel's menu choose <strong>Import Script…</strong> and pick the file.</li>
+          <li>Run it from the Scripts panel.</li>
+        </ol>
+        <p class="small muted">Options 2, 4–8 and 12–14: No Break, hyphenation, alignment, spacing, leading and tracking, on text frames, artistic text, text on a path and tables. One Undo reverts the whole run. Affinity keeps ，。」 off the start of a line by itself; its scripting has no composer, hanging punctuation, mojikumi or optical kerning setting and cannot read line breaks, so options 1, 3, 9–11 and 15 are not offered. Settings are not remembered between runs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq">
+  <div class="wrap">
+    <p class="eyebrow">Questions</p>
+    <h2>Good to know</h2>
+    <details><summary>Which fonts can I use?</summary><p>Any font that has every POJ character, including the combining marks in a̍ and o͘, and ⁿ. Many CJK fonts lack some of them, and Illustrator then shows a box or puts the mark in the wrong place. The script can't add missing characters, so choose the font first. This page uses GenKiMin2 TW and GenKiGothic2 TW, which cover POJ.</p></details>
+    <details><summary>Can I run it on just part of the document?</summary><p>Yes. Before running, select the text frames you want, a group that contains them, or click into a text with the Type tool. The dialog's <strong>Apply to</strong> choice is then set to <strong>Selected text only</strong>, and only those texts change, including the check report. Choose <strong>Whole document</strong> to run on everything. With nothing selected, the whole document is used.</p></details>
+    <details><summary>Does it work while I type?</summary><p>No. Illustrator scripts run when you start them. Run it again after adding text with hyphens, or at least once before you export. Running it again is always safe.</p></details>
+    <details><summary>Why are some lines still listed in the check report?</summary><p>“Starts with -” or “starts with ，” usually means a text block was locked or hidden, so the script skipped it. “Possibly loose” is an estimate: a justified line with much less text than the others around it. Fix it with a manual line break or a small edit.</p></details>
+    <details><summary>Spacing looks odd after I edited some text</summary><p>New text copies the No Break and spacing of the character before it. Option 2a, on by default, clears No Break before re-applying it. For spacing, tick 14a once to reset tracking, then re-apply any tracking you set by hand on titles.</p></details>
+    <details><summary>Can I keep my document's own settings?</summary><p>Yes. Untick an option and the script leaves that setting alone. Options 6 and 7 default to common book values; type your own numbers and they're remembered. Fields of unticked options are ignored.</p></details>
+    <details><summary>Does it work if my Illustrator isn't in English?</summary><p>Yes. The kinsoku rules are built into the script, a copy of Illustrator's Hard set, so they don't depend on set names in your language. Option 10 lists the mojikumi sets your Illustrator and document actually have, with the names your Paragraph panel shows.</p></details>
+    <details><summary>I made my own kinsoku set with “-” in it. Do I need to change it?</summary><p>No. The script keeps hyphenated words and punctuation together with No Break, which works whatever kinsoku set a paragraph uses. You can set the Paragraph panel back to Hard or None if you like; the script doesn't change it unless you tick option 9.</p></details>
+    <details><summary>Why not use the non-breaking hyphen (U+2011) instead?</summary><p>It works without a script, but your text would no longer contain the ordinary hyphen, which matters for searching, copying and other Roman Orthography tools. The script keeps the text as written and changes only the layout.</p></details>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Pe̍h-ōe-jī Layout Script 0.9.0 · Made by <a href="https://linktr.ee/taibunkesimi" lang="nan-TW">Tâi-bûn Ke-si Mī</a></span>
+    <a href="https://github.com/PehoejiKesi/PehoejiLayoutScript">Source on GitHub</a>
+    <p id="rights" class="rights">The Taigi sample text on this page is © <span lang="nan-TW">Tân Lûi</span> (<span lang="zh-Hant-TW">陳雷</span>). It is used only under permission given to <span lang="nan-TW">Tá-káu Tâi-gí-bûn Chhiok-chìn Hia̍p-hōe</span> (<span lang="zh-Hant-TW">打狗台語文促進協會</span>) and is not free to reuse. If you fork this project, remove the sample text.</p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

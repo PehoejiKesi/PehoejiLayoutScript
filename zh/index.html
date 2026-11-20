@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#181A1C">
+<title>Pe̍h-ōe-jī Layout Script</title>
+<meta name="description" content="Adobe Illustrator 指令碼，處理白話字與漢羅台語文：行首行尾不再出現連字號、避頭尾、漢羅間距，並使用能正確放置聲調符號的書寫器。一鍵完成，每個選項都能調整。">
+<link rel="stylesheet" href="../site.css">
+<link rel="alternate" hreflang="en" href="https://pehoejikesi.github.io/PehoejiLayoutScript/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://pehoejikesi.github.io/PehoejiLayoutScript/zh/">
+</head>
+<body>
+<a class="skip" href="#problem">跳到主要內容</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Pe̍h-ōe-jī Layout Script</a>
+    <nav class="nav-links">
+      <a href="#problem">為什麼</a>
+      <a href="#features">功能</a>
+      <a href="#examples">範例</a>
+      <a href="#options">選項</a>
+      <a href="#install">安裝</a>
+      <a class="gh" href="https://github.com/PehoejiKesi/PehoejiLayoutScript">GitHub</a>
+    </nav>
+    <a class="lang" href="../" lang="en" hreflang="en">English</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Adobe Illustrator 指令碼 · 台語白話字／漢羅 · v0.9.0 beta</p>
+      <h1>Pe̍h-ōe-jī Layout Script</h1>
+      <p class="lead">讓白話字與漢羅台語文斷行正確、間距平均。行首不再出現「-」，一鍵處理整份文件，每項設定都能調整。</p>
+      <div class="cta">
+        <a class="btn primary" href="../Pe%CC%8Dh-%C5%8De-j%C4%AB%20Layout%20Script.jsx" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          下載指令碼
+        </a>
+        <a class="btn" href="https://github.com/PehoejiKesi/PehoejiLayoutScript">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          在 GitHub 查看
+        </a>
+      </div>
+      <p class="meta">0.9.0 版（beta）· <a href="https://github.com/PehoejiKesi/PehoejiLayoutScript/blob/main/CHANGELOG.md">更新內容</a>（英文）· 適用 Adobe Illustrator 2020 以後版本 · macOS 與 Windows · 只有一個 .jsx 檔案，免費 · <a href="#other-apps">也支援 InDesign 和 Affinity</a></p>
+    </div>
+
+    <figure class="compare" style="margin:0">
+      <figcaption class="sr-only">修正前：Illustrator 把「出--來」和「chhut--lâi」拆開，下一行以連字號開頭。修正後：指令碼讓漢羅和白話字裡含連字號的詞都保持完整。</figcaption>
+      <div class="card">
+        <span class="tag bad">修正前</span>
+        <p class="scr">漢羅</p>
+        <div class="sample lay" data-pair="hero-hl" data-role="off" data-nb="off" aria-hidden="true" lang="nan-TW" style="width:12.75em">第一，伊ē-tàng完全正確表達台語。講ē出--來tō寫ē出--來，寫ē出--來tio̍h讀ē出--來。</div>
+        <p class="scr">白話字</p>
+        <div class="sample lay" data-pair="hero-poj" data-role="off" data-nb="off" aria-hidden="true" lang="nan-TW" style="width:12.75em">Kóng ē chhut--lâi tio̍h siá ē chhut--lâi, siá ē chhut--lâi tio̍h tha̍k ē chhut--lâi.</div>
+        <p class="cap">Illustrator 把連字號推到下一行。</p>
+      </div>
+      <div class="card">
+        <span class="tag good">修正後</span>
+        <p class="scr">漢羅</p>
+        <div class="sample lay" data-pair="hero-hl" data-role="on" data-ok="nb" aria-hidden="true" lang="nan-TW" style="width:12.75em">第一，伊ē-tàng完全正確表達台語。講ē出--來tō寫ē出--來，寫ē出--來tio̍h讀ē出--來。</div>
+        <p class="scr">白話字</p>
+        <div class="sample lay" data-pair="hero-poj" data-role="on" data-ok="nb" aria-hidden="true" lang="nan-TW" style="width:12.75em">Kóng ē chhut--lâi tio̍h siá ē chhut--lâi, siá ē chhut--lâi tio̍h tha̍k ē chhut--lâi.</div>
+        <p class="cap">含連字號的詞保持完整。</p>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="wrap">
+    <p class="eyebrow">問題在哪裡</p>
+    <h2>Illustrator 不是為台語設計的</h2>
+    <p class="muted" style="max-width:760px">Illustrator 的文字引擎是為英文、中文和日文設計的。白話字和漢羅台語文剛好介於中間：有聲調符號的羅馬字、用連字號連起來的音節，還有同一行裡的漢字。直接排版時，Illustrator 會在連字號處斷行，讓「-」出現在行首或行尾；a̍ 這類聲調符號可能跑到字母旁邊，而不是在字母上；漢字和羅馬字之間的間距也不平均。</p>
+    <p class="muted" style="max-width:760px">這些問題大多可以手動調整，但設定分散在好幾個面板和對話框裡（避頭尾、書寫器、不換行、齊行、字距），很少人知道哪些設定有用、彼此又會怎麼影響。有些問題甚至無法只靠設定解決：最直覺的做法是把「-」同時加進避頭尾設定的兩個清單，結果 Illustrator 反而把連字號推到下一行行首。</p>
+    <p class="muted" style="max-width:760px">這個指令碼幫你一次做好。執行一次，就把測試過的設定套用到整份文件，並用<strong>不換行</strong>讓每個含連字號的詞留在同一行。沒有勾選的項目，會完全保留原本的設定。</p>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow">功能</p>
+    <h2>白話字和漢羅需要的設定，一次完成</h2>
+    <div class="grid3">
+      <div class="feat"><div class="ico">斷</div><h3>斷行</h3><p>每個含連字號的詞都套用不換行，標點符號套用 Illustrator Hard 避頭尾規則（內建在指令碼裡，任何語言版本都適用），並關閉 Illustrator 的自動連字，以免它加入和台語連字號一模一樣的「-」。</p></div>
+      <div class="feat"><div class="ico">a̍</div><h3>聲調符號位置正確</h3><p>把段落切換成「中東和南亞每行書寫器」，讓 a̍、o͘、ǹ 這類組合聲調符號正確疊在字母上。</p></div>
+      <div class="feat"><div class="ico">漢</div><h3>漢羅間距</h3><p>漢字和羅馬字相接的地方自動加一點間距，不必打空格，文字本身仍是正確的漢羅寫法。</p></div>
+      <div class="feat"><div class="ico">-</div><h3>收緊連字號</h3><p>中日韓字型的「-」左右空間常常太大，<span style="font-family:var(--serif)">ē-tàng</span> 看起來像 <span style="font-family:var(--serif)">ē - tàng</span>。指令碼會把音節拉近。</p></div>
+      <div class="feat"><div class="ico">≡</div><h3>齊行與行距</h3><p>對齊方式、字間距和字母間距的範圍，以及自動行距，全文件一起設定。預設值符合一般書籍內文的齊行排法。</p></div>
+      <div class="feat"><div class="ico">✓</div><h3>檢查報告</h3><p>執行後列出仍以「-」開頭或結尾、以 ，。」 開頭，或看起來太鬆的行，並把清單存到桌面。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="dialog">
+  <div class="wrap">
+    <p class="eyebrow">對話框</p>
+    <h2>每個選項都能開關，每個數字都能修改</h2>
+    <p class="muted" style="max-width:760px">指令碼會記住上次的選擇，按 <strong>Defaults</strong> 可恢復預設值；沒有勾選的項目會完全保留文件原本的設定。對話框目前只有英文，各選項對應的 Illustrator 名稱請見下方的<a href="#options">選項表</a>。</p>
+
+    <div class="dlg" role="img" aria-label="指令碼對話框示意圖，共五組選項">
+      <div class="dlg-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dlg-title">Pe̍h-ōe-jī Layout Script</span></div>
+      <div class="dlg-scope"><span class="pnl-t2">Apply to</span><span class="rb"></span>Whole document <span class="rb on"></span>Selected text only (2 text frames)</div>
+      <div class="dlg-body">
+        <div>
+          <div class="pnl"><span class="pnl-t">A. 斷行</span>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>1&nbsp; Kinsoku: Hard rules</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>2&nbsp; No Break on hyphenated words</div></div>
+            <div class="opt sub"><div class="opt-row"><span class="cb on"></span>2a&nbsp; First clear No Break from all text</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>3&nbsp; Middle Eastern &amp; South Asian Every-line Composer</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>4&nbsp; Turn auto-hyphenation off</div></div>
+          </div>
+          <div class="pnl"><span class="pnl-t">B. Justification &amp; leading</span>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>5&nbsp; Alignment
+              <span class="al" aria-hidden="true">
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="13" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="10" height="2"/></svg></span>
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect x="4" y="5" width="12" height="2"/><rect y="9" width="20" height="2"/><rect x="5" y="13" width="10" height="2"/></svg></span>
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect x="7" y="5" width="13" height="2"/><rect y="9" width="20" height="2"/><rect x="10" y="13" width="10" height="2"/></svg></span>
+                <span class="on"><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="10" height="2"/></svg></span>
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect x="5" y="13" width="10" height="2"/></svg></span>
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect x="10" y="13" width="10" height="2"/></svg></span>
+                <span><svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="20" height="2"/></svg></span>
+              </span></div>
+              <p class="dsc">Justify with last line aligned left</p></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>6&nbsp; Word spacing min <span class="fld">80</span> desired <span class="fld">150</span> max <span class="fld">200</span> %</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>7&nbsp; Letter spacing min <span class="fld">0</span> desired <span class="fld">10</span> max <span class="fld">50</span> %</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>8&nbsp; Auto leading <span class="fld">133</span> % of font size</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="pnl"><span class="pnl-t">C. Punctuation</span>
+            <div class="opt"><div class="opt-row"><span class="cb"></span>9&nbsp; Hanging punctuation (Burasagari)</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb"></span>10&nbsp; Mojikumi set <span class="fld dd" style="min-width:120px">YakumonoHankaku</span></div></div>
+          </div>
+          <div class="pnl"><span class="pnl-t">D. Spacing (tracking, 1/1000 em)</span>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>11&nbsp; Kerning: Auto (metrics)</div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>12&nbsp; Roman Orthography tracking <span class="fld">5</span></div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>13&nbsp; Han–Lo space <span class="fld">100</span></div></div>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>14&nbsp; Hyphen tightening <span class="fld">-30</span></div></div>
+            <div class="opt sub"><div class="opt-row"><span class="cb"></span>14a&nbsp; First reset all tracking to 0</div></div>
+          </div>
+          <div class="pnl"><span class="pnl-t">E. 檢查</span>
+            <div class="opt"><div class="opt-row"><span class="cb on"></span>15&nbsp; Check report after running</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dlg-foot"><span class="dlg-btn">Defaults</span><span style="flex:1"></span><span class="dlg-btn">Cancel</span><span class="dlg-btn def">Run</span></div>
+    </div>
+    <p class="small muted" style="text-align:center;margin-top:10px">簡化示意：實際的對話框在每個選項下方還有一行灰色說明。</p>
+  </div>
+</section>
+
+<section id="examples">
+  <div class="wrap">
+    <p class="eyebrow">範例</p>
+    <h2>每個選項的前後對照</h2>
+    <p class="muted" style="max-width:760px">每張卡片用同一段文字比較選項關閉和開啟的結果，範例有白話字、漢羅或兩者都有。虛線是文字框的右邊界。斷行是在瀏覽器裡模擬的，和 Illustrator 實際的間距會略有差異。台語範例文字的作者是 <span lang="nan-TW">Tân Lûi</span>（<span lang="zh-Hant-TW">陳雷</span>），經授權使用，詳見<a href="#rights">頁尾說明</a>。</p>
+
+    <h3 class="grp-h">A. 斷行</h3>
+    <div class="ex-grid">
+      <div class="card ex">
+        <h4><span class="num">1</span>避頭尾：Hard 規則</h4>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">關閉</span><div class="box lay" data-pair="e1" data-role="off" data-kin="off" lang="nan-TW" style="width:9.75em">第二，伊真容易學。字母ē曉，聲調lia̍h準，tio̍h ē曉--ah。</div></div>
+        <div class="demo"><span class="lbl">開啟</span><div class="box lay" data-pair="e1" data-role="on" data-ok="kin" lang="nan-TW" style="width:9.75em">第二，伊真容易學。字母ē曉，聲調lia̍h準，tio̍h ē曉--ah。</div></div>
+        <p class="cap">逗號不能放在行首，所以和前一個字一起移到下一行。白話字只在空格處斷行，標點本來就會跟著前面的詞。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">2</span>含連字號的詞套用不換行</h4>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">關閉</span><div class="box lay" data-pair="e2-hl" data-role="off" data-nb="off" lang="nan-TW" style="width:9.25em">已經ē曉講台語ê人，幾點鐘、幾日tio̍h學有。Kap漢字比--起-來，天差地。</div></div>
+        <div class="demo"><span class="lbl">開啟</span><div class="box lay" data-pair="e2-hl" data-role="on" data-ok="nb" lang="nan-TW" style="width:9.25em">已經ē曉講台語ê人，幾點鐘、幾日tio̍h學有。Kap漢字比--起-來，天差地。</div></div>
+        <p class="scr">白話字</p>
+        <div class="demo"><span class="lbl">關閉</span><div class="box lay" data-pair="e2-poj" data-role="off" data-nb="off" lang="nan-TW" style="width:12.5em">Kap hàn-jī pí--khí-lâi, thiⁿ-chha-tē. Hàn-jī sī siá Tiong-kok-ōe iōng--ê.</div></div>
+        <div class="demo"><span class="lbl">開啟</span><div class="box lay" data-pair="e2-poj" data-role="on" data-ok="nb" lang="nan-TW" style="width:12.5em">Kap hàn-jī pí--khí-lâi, thiⁿ-chha-tē. Hàn-jī sī siá Tiong-kok-ōe iōng--ê.</div></div>
+        <p class="cap">含連字號的詞整個移到下一行，「-」就不會出現在行首或行尾。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">2a</span>先清除不換行</h4>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">問題</span><div class="box lay" data-pair="e2a-hl" data-role="prob" lang="nan-TW" style="width:11.5em">字母ē曉，聲調lia̍h準，tio̍h ē曉--ah<span class="stuck">。已經ē曉講台語ê人</span></div></div>
+        <div class="demo"><span class="lbl">開啟</span><div class="box lay" data-pair="e2a-hl" data-role="on" lang="nan-TW" style="width:11.5em">字母ē曉，聲調lia̍h準，tio̍h ē曉--ah。已經ē曉講台語ê人</div></div>
+        <p class="scr">白話字</p>
+        <div class="demo"><span class="lbl">問題</span><div class="box lay" data-pair="e2a-poj" data-role="prob" lang="nan-TW" style="width:12em">Jī-bó ē-hiáu, siaⁿ-tiāu lia̍h-chún, tio̍h ē-hiáu--ah<span class="stuck">. Í-keng ē-hiáu</span></div></div>
+        <div class="demo"><span class="lbl">開啟</span><div class="box lay" data-pair="e2a-poj" data-role="on" lang="nan-TW" style="width:12em">Jī-bó ē-hiáu, siaⁿ-tiāu lia̍h-chún, tio̍h ē-hiáu--ah. Í-keng ē-hiáu</div></div>
+        <p class="cap">在「--ah」後面輸入的文字沿用了它的不換行，因此無法斷行。先清除不換行，再只套用到含連字號的詞，就能解決。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">3</span>中東和南亞每行書寫器</h4>
+        <p class="scr">白話字</p>
+        <div class="demo"><span class="lbl">關閉</span><div class="box free sim" lang="nan-TW">tha<span class="drift">ˈ</span>k · lia<span class="drift">ˈ</span>h-chún · ha<span class="drift">ˈ</span>p-lí</div></div>
+        <div class="demo"><span class="lbl">開啟</span><div class="box free" lang="nan-TW">tha̍k · lia̍h-chún · ha̍p-lí</div></div>
+        <p class="cap">使用某些書寫器時，a̍ 這類組合聲調符號會偏到字母旁邊，沒有疊在字母上（模擬）。漢羅裡帶聲調符號的字也一樣。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">4</span>關閉自動連字</h4>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">關閉</span><div class="box lay" data-pair="e4-hl" data-role="off" data-ah="on" lang="nan-TW" style="width:7.5em">台文ê將來應該是全羅馬字chi&shy;ah合理。</div></div>
+        <div class="demo"><span class="lbl">開啟</span><div class="box lay" data-pair="e4-hl" data-role="on" lang="nan-TW" style="width:7.5em">台文ê將來應該是全羅馬字chi&shy;ah合理。</div></div>
+        <p class="scr">白話字</p>
+        <div class="demo"><span class="lbl">關閉</span><div class="box lay" data-pair="e4-poj" data-role="off" data-ah="on" lang="nan-TW" style="width:9em">Lî-chhiáⁿ Lô-má-jī kap kok-chióng kok-chè gú-giân bûn-jī ke chin iông-ī thong-chi&shy;ap.</div></div>
+        <div class="demo"><span class="lbl">開啟</span><div class="box lay" data-pair="e4-poj" data-role="on" lang="nan-TW" style="width:9em">Lî-chhiáⁿ Lô-má-jī kap kok-chióng kok-chè gú-giân bûn-jī ke chin iông-ī thong-chi&shy;ap.</div></div>
+        <p class="cap">Illustrator 依英文規則自動連字，會把羅馬字拆開，而它加上的「-」和台語連字號一模一樣。關閉後，窄欄可能出現較鬆的行（如白話字範例），稍微修改文字即可。</p>
+      </div>
+    </div>
+
+    <h3 class="grp-h">B. 齊行與行距</h3>
+    <div class="ex-grid">
+      <div class="card ex">
+        <h4><span class="num">5</span>對齊方式</h4>
+        <div class="icons" aria-hidden="true">
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="13" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="10" height="2"/></svg>
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect x="4" y="5" width="12" height="2"/><rect y="9" width="20" height="2"/><rect x="5" y="13" width="10" height="2"/></svg>
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect x="7" y="5" width="13" height="2"/><rect y="9" width="20" height="2"/><rect x="10" y="13" width="10" height="2"/></svg>
+          <svg class="on" viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="10" height="2"/></svg>
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect x="5" y="13" width="10" height="2"/></svg>
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect x="10" y="13" width="10" height="2"/></svg>
+          <svg viewBox="0 0 20 16"><rect y="1" width="20" height="2"/><rect y="5" width="20" height="2"/><rect y="9" width="20" height="2"/><rect y="13" width="20" height="2"/></svg>
+        </div>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">靠左</span><div class="box lay" data-pair="e5-hl" data-role="left" data-align="left" lang="nan-TW" style="width:10.75em">漢字是寫中國話用--ê，bē-tàng完全koh正確寫台語。</div></div>
+        <div class="demo"><span class="lbl">齊行</span><div class="box lay" data-pair="e5-hl" data-role="justify" lang="nan-TW" style="width:10.75em">漢字是寫中國話用--ê，bē-tàng完全koh正確寫台語。</div></div>
+        <p class="scr">白話字</p>
+        <div class="demo"><span class="lbl">靠左</span><div class="box lay" data-pair="e5-poj" data-role="left" data-align="left" lang="nan-TW" style="width:7.75em">Hàn-jī sī siá Tiong-kok-ōe iōng--ê, bē-tàng oân-choân koh chèng-khak siá Tâi-gú.</div></div>
+        <div class="demo"><span class="lbl">齊行</span><div class="box lay" data-pair="e5-poj" data-role="justify" lang="nan-TW" style="width:7.75em">Hàn-jī sī siá Tiong-kok-ōe iōng--ê, bē-tàng oân-choân koh chèng-khak siá Tâi-gú.</div></div>
+        <p class="cap">預設為「齊行，末行靠左」，和多數書籍內文相同。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">6</span>字間距</h4>
+        <p class="scr">白話字</p>
+        <div class="demo"><span class="lbl">100%</span><div class="box free" lang="nan-TW">Iōng Lô-má-jī siá Tâi-gú ū chin chē iu-tiám.</div></div>
+        <div class="demo"><span class="lbl">150%</span><div class="box free" lang="nan-TW" style="word-spacing:.12em">Iōng Lô-má-jī siá Tâi-gú ū chin chē iu-tiám.</div></div>
+        <p class="cap">空格的理想寬度。白話字每個詞之間都有空格，影響最大；漢羅只有羅馬字詞之間才有空格。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">7</span>字母間距</h4>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">0%</span><div class="box free" lang="nan-TW">第二，伊真容易學。</div></div>
+        <div class="demo"><span class="lbl">10%</span><div class="box free" lang="nan-TW" style="letter-spacing:.03em">第二，伊真容易學。</div></div>
+        <p class="scr">白話字</p>
+        <div class="demo"><span class="lbl">0%</span><div class="box free" lang="nan-TW">Tē-jī, i chin iông-ī o̍h.</div></div>
+        <div class="demo"><span class="lbl">10%</span><div class="box free" lang="nan-TW" style="letter-spacing:.03em">Tē-jī, i chin iông-ī o̍h.</div></div>
+        <p class="cap">齊行時加在所有字元之間的間距。最大值（50%）只在一行沒有其他地方能拉開時才會用到。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">8</span>自動行距</h4>
+        <p class="scr">白話字</p>
+        <div class="demo"><span class="lbl">110%</span><div class="box free" lang="nan-TW" style="line-height:1.1"><div>Í-keng ē-hiáu Tâi-gú ê lâng,</div><div>kúi tiám-cheng,</div><div>kúi-ji̍t tio̍h o̍h-ū.</div></div></div>
+        <div class="demo"><span class="lbl">133%</span><div class="box free" lang="nan-TW" style="line-height:1.45"><div>Í-keng ē-hiáu Tâi-gú ê lâng,</div><div>kúi tiám-cheng,</div><div>kúi-ji̍t tio̍h o̍h-ū.</div></div></div>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">110%</span><div class="box free" lang="nan-TW" style="line-height:1.1"><div>已經ē曉講台語ê人，</div><div>幾點鐘、幾日tio̍h學有。</div></div></div>
+        <div class="demo"><span class="lbl">133%</span><div class="box free" lang="nan-TW" style="line-height:1.45"><div>已經ē曉講台語ê人，</div><div>幾點鐘、幾日tio̍h學有。</div></div></div>
+        <p class="cap">聲調符號需要行的上方空間。指令碼接受 120% 到 500%。</p>
+      </div>
+    </div>
+
+    <h3 class="grp-h">C. 標點（預設關閉，只用於漢羅）</h3>
+    <div class="ex-grid">
+      <div class="card ex">
+        <h4><span class="num">9</span>標點溢出</h4>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">關閉</span><div class="box lay" data-pair="e9" data-role="off" lang="nan-TW" style="width:8.75em">台文ê將來應該是全羅馬字chiah合理。而且羅馬字kap各種國際語言文字ke真容易thong-chiap。</div></div>
+        <div class="demo"><span class="lbl">開啟</span><div class="box lay" data-pair="e9" data-role="on" data-hang="on" lang="nan-TW" style="width:8.75em">台文ê將來應該是全羅馬字chiah合理。而且羅馬字kap各種國際語言文字ke真容易thong-chiap。</div></div>
+        <p class="cap">、。，． 可以稍微超出邊界，讓右緣看起來更整齊。白話字的半形標點不會溢出。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">10</span>標點符號擠壓設定</h4>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">關閉</span><div class="box free" lang="nan-TW">字母ē曉，聲調lia̍h準，tio̍h ē曉--ah。</div></div>
+        <div class="demo"><span class="lbl">開啟</span><div class="box free" lang="nan-TW">字母ē曉<span style="margin-right:-.5em">，</span>聲調lia̍h準<span style="margin-right:-.5em">，</span>tio̍h ē曉--ah。</div></div>
+        <p class="cap">把全形標點擠成半形寬。內建設定是為日文設計的，台灣字型的 ，。 位於字身中央，請用眼睛確認結果。</p>
+      </div>
+    </div>
+
+    <h3 class="grp-h">D. 間距</h3>
+    <div class="ex-grid">
+      <div class="card ex">
+        <h4><span class="num">11</span>字距微調：自動</h4>
+        <p class="scr">白話字</p>
+        <div class="demo"><span class="lbl">視覺</span><div class="box free" lang="nan-TW"><span style="letter-spacing:-.1em">T</span>âi-gú · <span style="letter-spacing:-.1em">T</span>âi-bûn · <span style="letter-spacing:-.1em">T</span>ē-it</div></div>
+        <div class="demo"><span class="lbl">自動</span><div class="box free" lang="nan-TW">Tâi-gú · Tâi-bûn · Tē-it</div></div>
+        <p class="cap">「視覺」字距微調可能把帶聲調符號的字母塞到 T 下方，直到符號碰到 T（模擬）。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">12</span>羅馬字追蹤</h4>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">0</span><div class="box free" lang="nan-TW">伊ē-tàng完全正確表達台語。</div></div>
+        <div class="demo"><span class="lbl">+40</span><div class="box free" lang="nan-TW">伊<span style="letter-spacing:.04em">ē-tàng</span>完全正確表達台語。</div></div>
+        <p class="scr">白話字</p>
+        <div class="demo"><span class="lbl">0</span><div class="box free" lang="nan-TW">i ē-tàng oân-choân chèng-khak</div></div>
+        <div class="demo"><span class="lbl">+40</span><div class="box free" lang="nan-TW" style="letter-spacing:.04em">i ē-tàng oân-choân chèng-khak</div></div>
+        <p class="cap">把羅馬字稍微拉開，和筆畫較輕的漢字取得平衡；漢字不變。預設 +5（這裡用 +40 讓差異看得出來）。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">13</span>漢羅間距</h4>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">關閉</span><div class="box free" lang="nan-TW">伊ē-tàng完全正確表達台語。</div></div>
+        <div class="demo"><span class="lbl">+100</span><div class="box free" lang="nan-TW"><span style="margin-right:.1em">伊</span>ē-tàn<span style="margin-right:.1em">g</span>完全正確表達台語。</div></div>
+        <p class="cap">漢字和羅馬字相接處加 1/10 em，不論前後順序，也不必輸入空格。白話字沒有漢字，所以不受影響。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">14</span>收緊連字號</h4>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">關閉</span><div class="box free" lang="nan-TW">ē-tàng · 出--來 · 比--起-來</div></div>
+        <div class="demo"><span class="lbl">−30</span><div class="box free" lang="nan-TW"><span class="t">ē</span><span class="t">-</span>tàng · <span class="t">出</span><span class="t">-</span><span class="t">-</span>來 · <span class="t">比</span><span class="t">-</span><span class="t">-</span><span class="t">起</span><span class="t">-</span>來</div></div>
+        <p class="scr">白話字</p>
+        <div class="demo"><span class="lbl">關閉</span><div class="box free" lang="nan-TW">Lô-má-jī · chhut--lâi · pí--khí-lâi</div></div>
+        <div class="demo"><span class="lbl">−30</span><div class="box free" lang="nan-TW">L<span class="t">ô</span><span class="t">-</span>m<span class="t">á</span><span class="t">-</span>jī · chhu<span class="t">t</span><span class="t">-</span><span class="t">-</span>lâi · p<span class="t">í</span><span class="t">-</span><span class="t">-</span>kh<span class="t">í</span><span class="t">-</span>lâi</div></div>
+        <p class="cap">把台語詞裡「-」和「--」兩邊的音節拉近。其他連字號（例如 -5）不會更動。</p>
+      </div>
+      <div class="card ex">
+        <h4><span class="num">14a</span>先把追蹤歸零</h4>
+        <p class="scr">漢羅</p>
+        <div class="demo"><span class="lbl">問題</span><div class="box free" lang="nan-TW"><span style="margin-right:.1em">伊</span>ē-tàn<span style="margin-right:.1em">g</span><span class="hit" style="letter-spacing:.1em">完全正確</span>表達台語。</div></div>
+        <div class="demo"><span class="lbl">開啟</span><div class="box free" lang="nan-TW"><span style="margin-right:.1em">伊</span>ē-tàn<span style="margin-right:.1em">g</span>完全正確表達台語。</div></div>
+        <p class="cap">「完全正確」是在 ē-tàng 後面輸入的，而 ē-tàng 的最後一個字母帶有漢羅間距，新輸入的每個字都沿用了這個間距。歸零會清除它，指令碼再重新設定正確的間距。</p>
+      </div>
+    </div>
+
+    <h3 class="grp-h">E. 檢查</h3>
+    <div class="ex-grid">
+      <div class="card ex wide">
+        <h4><span class="num">15</span>檢查報告</h4>
+        <p class="cap" style="margin:0 0 8px">執行後，摘要會列出需要檢查的行，完整清單存到桌面（報告為英文）：</p>
+<pre class="report" lang="nan-TW"><code>my-book.ai – Pe̍h-ōe-jī Layout Script 0.9.0
+starts with "-"   Text 3, line 12: --來tō寫ē出--來，
+ends with "-"     Text 4, line 7: Kóng ē chhut-
+starts with ，    Text 5, line 4: ，聲調lia̍h準，tio̍h ē曉--ah。
+possibly loose    Text 7, line 2: 漢字是寫中國話</code></pre>
+        <p class="cap">「starts with "-"」通常表示該文字物件被鎖定或隱藏而被略過；「possibly loose」是齊行文字可能過鬆的估計。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="options">
+  <div class="wrap">
+    <p class="eyebrow">參考</p>
+    <h2>所有選項</h2>
+    <div class="tbl-wrap">
+    <table>
+      <caption>預設值是第一次開啟對話框，或按下 Defaults 後顯示的值。對話框為英文，括號內是對話框上的名稱。</caption>
+      <thead><tr><th scope="col">#</th><th scope="col">選項</th><th scope="col">預設</th><th scope="col">作用</th></tr></thead>
+      <tbody>
+        <tr class="grp"><th colspan="4" scope="colgroup">A. 斷行（Line breaking）</th></tr>
+        <tr><td class="n">1</td><td>避頭尾：Hard 規則<br><span class="small muted">Kinsoku: Hard rules</span></td><td class="d"><span class="pill on">開</span></td><td>，。、」） 等標點不能放在行首；「（【 不能放在行尾。指令碼內建一份 Illustrator Hard 設定的規則，用不換行套用，所以任何語言版本都適用，也不受文件裡的避頭尾設定影響。</td></tr>
+        <tr><td class="n">2</td><td>含連字號的詞套用不換行<br><span class="small muted">No Break on hyphenated words</span></td><td class="d"><span class="pill on">開</span></td><td>讓 ē-tàng、chhut--lâi、出--來、比--起-來 保持完整，「-」不會出現在行首或行尾。</td></tr>
+        <tr><td class="n">2a</td><td>先清除所有文字的不換行<br><span class="small muted">First clear No Break from all text</span></td><td class="d"><span class="pill on">開</span></td><td>清除輸入時沿用到的不換行。也會清除你手動設定的不換行。</td></tr>
+        <tr><td class="n">3</td><td>中東和南亞每行書寫器<br><span class="small muted">Middle Eastern &amp; South Asian Every-line Composer</span></td><td class="d"><span class="pill on">開</span></td><td>讓組合聲調符號正確疊在字母上。</td></tr>
+        <tr><td class="n">4</td><td>關閉自動連字<br><span class="small muted">Turn auto-hyphenation off</span></td><td class="d"><span class="pill on">開</span></td><td>避免 Illustrator 自己加上連字號。</td></tr>
+        <tr class="grp"><th colspan="4" scope="colgroup">B. 齊行與行距（Justification &amp; leading）</th></tr>
+        <tr><td class="n">5</td><td>對齊方式<br><span class="small muted">Alignment</span></td><td class="d"><span class="pill on">開 · 齊行，末行靠左</span></td><td>七種選擇，用段落面板上的圖示表示。</td></tr>
+        <tr><td class="n">6</td><td>字間距<br><span class="small muted">Word spacing</span></td><td class="d"><span class="pill on">開 · 80 / 150 / 200 %</span></td><td>齊行時空格可以縮小或拉大的範圍。</td></tr>
+        <tr><td class="n">7</td><td>字母間距<br><span class="small muted">Letter spacing</span></td><td class="d"><span class="pill on">開 · 0 / 10 / 50 %</span></td><td>齊行時字元之間可以拉開的範圍。</td></tr>
+        <tr><td class="n">8</td><td>自動行距<br><span class="small muted">Auto leading</span></td><td class="d"><span class="pill on">開 · 133 %</span></td><td>行距為字級的百分比，120% 到 500%。套用到所有文字（包括標題），並取代固定行距。</td></tr>
+        <tr class="grp"><th colspan="4" scope="colgroup">C. 標點（Punctuation）</th></tr>
+        <tr><td class="n">9</td><td>標點溢出<br><span class="small muted">Hanging punctuation (Burasagari)</span></td><td class="d"><span class="pill off">關</span></td><td>、。，． 可以超出右邊界，讓右緣更整齊。標點溢出需要避頭尾設定，所以這個選項也會套用 Illustrator 內建的 Hard 設定。</td></tr>
+        <tr><td class="n">10</td><td>標點符號擠壓設定<br><span class="small muted">Mojikumi set</span></td><td class="d"><span class="pill off">關</span></td><td>套用指定名稱的標點符號擠壓設定。內建設定是為日文標點設計的。</td></tr>
+        <tr class="grp"><th colspan="4" scope="colgroup">D. 間距（Spacing，追蹤單位 1/1000 em）</th></tr>
+        <tr><td class="n">11</td><td>字距微調：自動<br><span class="small muted">Kerning: Auto (metrics)</span></td><td class="d"><span class="pill on">開</span></td><td>「視覺」字距微調可能誤判帶聲調符號的字母。</td></tr>
+        <tr><td class="n">12</td><td>羅馬字追蹤<br><span class="small muted">Roman Orthography tracking</span></td><td class="d"><span class="pill on">開 · +5</span></td><td>每個羅馬字母後面加一點間距；漢字不變。</td></tr>
+        <tr><td class="n">13</td><td>漢羅間距<br><span class="small muted">Han–Lo space</span></td><td class="d"><span class="pill on">開 · +100</span></td><td>漢字和羅馬字相接處加間距。</td></tr>
+        <tr><td class="n">14</td><td>收緊連字號<br><span class="small muted">Hyphen tightening</span></td><td class="d"><span class="pill on">開 · −30</span></td><td>把台語詞裡「-」和「--」兩邊的音節拉近；其他連字號（例如 <code>-5</code>）不會更動。</td></tr>
+        <tr><td class="n">14a</td><td>先把所有追蹤歸零<br><span class="small muted">First reset all tracking to 0</span></td><td class="d"><span class="pill off">關</span></td><td>清除編輯後殘留的間距。也會清除你手動設定的追蹤，例如標題。12、13 或 14 開啟時才能選。</td></tr>
+        <tr class="grp"><th colspan="4" scope="colgroup">E. 檢查（Check）</th></tr>
+        <tr><td class="n">15</td><td>執行後產生檢查報告<br><span class="small muted">Check report after running</span></td><td class="d"><span class="pill on">開</span></td><td>列出以「-」開頭或結尾、以 ，。」 開頭、以 「（ 結尾，或齊行時看起來太鬆的行。有找到時，存成桌面上的 <code>peh-oe-ji-layout-report.txt</code>。</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow">運作方式</p>
+    <h2>哪些是 Illustrator 設定，哪些由指令碼計算</h2>
+    <p class="muted" style="max-width:760px">有些選項是把一般的 Illustrator 設定套用到所有文字，和你在段落或字元面板手動設定一樣。其他選項則由指令碼逐字判斷，這是 Illustrator 本身做不到的。</p>
+    <div class="how">
+      <div class="card">
+        <h3>Illustrator 設定</h3>
+        <p class="small muted">所有文字套用同一個值。取消勾選，就保留你原本的設定。</p>
+        <ul class="how-list">
+          <li><span class="num">3</span><div><strong>書寫器</strong><span>中東和南亞每行書寫器</span></div></li>
+          <li><span class="num">4</span><div><strong>關閉自動連字</strong><span>段落 › 連字</span></div></li>
+          <li><span class="num">5</span><div><strong>對齊方式</strong><span>段落對齊</span></div></li>
+          <li><span class="num">6–7</span><div><strong>字間距與字母間距</strong><span>齊行：最小值、理想、最大值</span></div></li>
+          <li><span class="num">8</span><div><strong>自動行距</strong><span>自動行距及其百分比</span></div></li>
+          <li><span class="num">9</span><div><strong>標點溢出</strong><span>標點溢出，加上它需要的 Illustrator 內建 Hard 避頭尾設定</span></div></li>
+          <li><span class="num">10</span><div><strong>標點符號擠壓</strong><span>段落的標點符號擠壓設定，從文件已有的清單選擇</span></div></li>
+          <li><span class="num">11</span><div><strong>字距微調</strong><span>字元字距微調：自動</span></div></li>
+          <li><span class="num">2a · 14a</span><div><strong>重設</strong><span>先把所有文字的不換行關閉、或追蹤歸零，再由指令碼重新設定</span></div></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>由指令碼計算</h3>
+        <p class="small muted">指令碼讀取文字，逐字決定哪裡套用不換行或追蹤。</p>
+        <ul class="how-list">
+          <li><span class="num">1</span><div><strong>避頭尾：Hard 規則</strong><span>依照複製自 Illustrator Hard 設定的規則，對標點和相鄰的字套用不換行。任何語言版本都適用，也不受文件裡的避頭尾設定影響。</span></div></li>
+          <li><span class="num">2</span><div><strong>含連字號的詞</strong><span>白話字和漢羅裡每個含連字號的台語詞都套用不換行</span></div></li>
+          <li><span class="num">12</span><div><strong>羅馬字追蹤</strong><span>只對羅馬字母設定追蹤，漢字不變</span></div></li>
+          <li><span class="num">13</span><div><strong>漢羅間距</strong><span>只在漢字和羅馬字相接處設定追蹤</span></div></li>
+          <li><span class="num">14</span><div><strong>收緊連字號</strong><span>只在台語詞裡的「-」和「--」兩邊設定追蹤</span></div></li>
+          <li><span class="num">15</span><div><strong>檢查報告</strong><span>讀取排好的各行並列出問題，不更動任何設定</span></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><strong>修改文字後請再執行一次。</strong>指令碼的結果以一般的不換行和追蹤設定存在文件裡，存檔後重新開啟也會保留。之後新輸入的文字要再執行一次指令碼才會套用，重複執行永遠是安全的。</div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <p class="eyebrow">安裝</p>
+    <h2>一分鐘就能開始使用</h2>
+    <ol class="steps">
+      <li class="step"><div><h3>下載指令碼</h3><p class="muted" style="margin:0"><a href="../Pe%CC%8Dh-%C5%8De-j%C4%AB%20Layout%20Script.jsx" download>Pe̍h-ōe-jī Layout Script.jsx</a>：只有一個檔案，不必安裝其他東西。macOS 和 Windows 都用同一個檔案。</p></div></li>
+      <li class="step"><div><h3>直接執行一次</h3><p class="muted" style="margin:0">在 Illustrator 開啟文件，選擇<strong>檔案 › 指令碼 › 其他指令碼…</strong>，再選這個檔案。快速鍵在 macOS 是 <kbd>⌘</kbd> <kbd>F12</kbd>，在 Windows 是 <kbd>Ctrl</kbd> <kbd>F12</kbd>。只想處理部分內容時，先選取那些文字物件，對話框就會提供<strong>Whole document</strong>（整份文件）或<strong>Selected text only</strong>（只處理選取的文字）。</p></div></li>
+      <li class="step"><div><h3>或加到指令碼選單</h3><p class="muted" style="margin:0">把檔案複製到 Illustrator 的 Scripts 資料夾一次，以後就會一直出現在<strong>檔案 › 指令碼</strong>底下。這個資料夾屬於系統，複製時會要求輸入密碼或系統管理員權限。</p>
+        <div class="plat">
+          <div class="card">
+            <h4>macOS</h4>
+            <ol>
+              <li>在 Finder 開啟<strong>應用程式 › Adobe Illustrator 2026 › Presets › zh_TW › Scripts</strong>。</li>
+              <li>把下載的檔案拖進 <strong>Scripts</strong> 資料夾，按<strong>鑑定</strong>並輸入 Mac 的密碼。</li>
+              <li>結束 Illustrator，再重新開啟。</li>
+            </ol>
+            <p class="small muted">也可以把下面這行貼到「終端機」（會要求輸入密碼）：</p>
+<pre><code>sudo cp ~/Downloads/*Layout\ Script.jsx "/Applications/Adobe Illustrator 2026/Presets.localized/zh_TW/Scripts/"</code></pre>
+          </div>
+          <div class="card">
+            <h4>Windows</h4>
+            <ol>
+              <li>在檔案總管開啟 <strong>C:\Program Files\Adobe\Adobe Illustrator 2026\Presets\zh_TW\Scripts</strong>。</li>
+              <li>把下載的檔案複製到這個資料夾。Windows 要求系統管理員權限時，按<strong>繼續</strong>。</li>
+              <li>結束 Illustrator，再重新開啟。</li>
+            </ol>
+            <p class="small muted">也可以用<strong>以系統管理員身分執行</strong>開啟 PowerShell，貼上：</p>
+<pre><code>Copy-Item "$env:USERPROFILE\Downloads\*Layout Script.jsx" "C:\Program Files\Adobe\Adobe Illustrator 2026\Presets\zh_TW\Scripts\"</code></pre>
+          </div>
+        </div>
+        <p class="small muted" style="margin:10px 0 0">請把 <code>2026</code> 換成你的 Illustrator 版本，<code>zh_TW</code> 換成你的語言資料夾，例如英文版是 <code>en_US</code>。重新啟動後選單裡還是沒有，請確認檔案放在 Illustrator 目前使用語言的資料夾。</p></div></li>
+    </ol>
+    <div class="note"><strong>你仍然需要支援白話字的字型。</strong>指令碼處理的是排版，不是字形。請選擇包含所有白話字字元（例如 a̍、o͘、ⁿ）的字型，否則有些字會顯示成方框，或聲調符號位置錯誤。排整本書之前，先檢查幾個字。</div>
+    <div class="note"><strong>第一次執行前：</strong>先把文件另存一份。復原可能需要好幾步。被鎖定或隱藏的文字，或位在被鎖定、隱藏的圖層或群組裡的文字，會被略過，請先解除鎖定。</div>
+  </div>
+</section>
+
+<section id="other-apps">
+  <div class="wrap">
+    <p class="eyebrow">其他軟體</p>
+    <h2>也支援 InDesign 和 Affinity</h2>
+    <p class="muted" style="max-width:760px">同樣的台語規則、同樣的選項編號，用在另外兩套排版軟體。各自只有一個檔案。</p>
+    <div class="plat">
+      <div class="card">
+        <h4>Adobe InDesign</h4>
+        <p class="small"><a href="../Pe%CC%8Dh-%C5%8De-j%C4%AB%20Layout%20Script%20(InDesign).jsx" download>Pe̍h-ōe-jī Layout Script (InDesign).jsx</a> · 已在 InDesign 2025 測試</p>
+        <ol>
+          <li>開啟<strong>視窗 › 公用程式 › 指令碼</strong>，在<strong>使用者</strong>資料夾按右鍵，選擇<strong>在 Finder 中顯示</strong>（Windows 為<strong>在檔案總管中顯示</strong>）。</li>
+          <li>把檔案複製到開啟的 <strong>Scripts Panel</strong> 資料夾。</li>
+          <li>在指令碼面板中按兩下這個指令碼。</li>
+        </ol>
+        <p class="small muted">全部 15 個選項。避頭尾設定、視覺調整（composer）和標點擠壓設定都從清單選擇。所有文章、表格儲存格和註腳都會處理，按一次「還原」就能復原整次執行。懸掛標點和標點擠壓需要 CJK 視覺調整（選項 3）。</p>
+      </div>
+      <div class="card">
+        <h4>Affinity</h4>
+        <p class="small"><a href="../Pe%CC%8Dh-%C5%8De-j%C4%AB%20Layout%20Script%20(Affinity).js" download>Pe̍h-ōe-jī Layout Script (Affinity).js</a> · 已在 Affinity 3.3 測試</p>
+        <ol>
+          <li>開啟 <strong>Scripts</strong> 面板。</li>
+          <li>在面板選單選擇 <strong>Import Script…</strong>，再選這個檔案。</li>
+          <li>從 Scripts 面板執行。</li>
+        </ol>
+        <p class="small muted">選項 2、4–8、12–14：不換行、自動連字、對齊、間距、行距和字距，適用於文字框、美術文字、路徑文字和表格。按一次「還原」就能復原整次執行。Affinity 本身就不會讓 ，。」 出現在行首；它的指令碼沒有視覺調整、懸掛標點、標點擠壓或視覺式字距的設定，也讀不到斷行位置，所以不提供選項 1、3、9–11 和 15。設定不會保留到下一次執行。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq">
+  <div class="wrap">
+    <p class="eyebrow">常見問題</p>
+    <h2>使用前須知</h2>
+    <details><summary>可以用哪些字型？</summary><p>任何包含所有白話字字元的字型，包括 a̍、o͘ 裡的組合符號和 ⁿ。很多中日韓字型缺少其中一些字元，Illustrator 就會顯示方框，或把符號放錯位置。指令碼無法補上缺少的字元，所以請先選好字型。本頁使用的源樣明體 GenKiMin2 TW 和源樣黑體 GenKiGothic2 TW 都支援白話字。</p></details>
+    <details><summary>可以只處理文件的一部分嗎？</summary><p>可以。執行前先選取要處理的文字物件、包含它們的群組，或用文字工具點進某段文字。對話框的 <strong>Apply to</strong> 就會設為 <strong>Selected text only</strong>，只有這些文字會被更動，檢查報告也只檢查它們。選 <strong>Whole document</strong> 則處理整份文件。沒有選取任何東西時，會處理整份文件。</p></details>
+    <details><summary>輸入文字時會自動套用嗎？</summary><p>不會。Illustrator 的指令碼只在你執行時運作。加入含連字號的文字後請再執行一次，或至少在輸出前執行一次。重複執行永遠是安全的。</p></details>
+    <details><summary>為什麼檢查報告還列出一些行？</summary><p>「starts with "-"」或「starts with ，」通常表示某個文字物件被鎖定或隱藏，指令碼略過了它。「possibly loose」是估計值：齊行時某一行的文字比周圍的行少很多。可以手動換行或稍微修改文字。</p></details>
+    <details><summary>修改文字後間距看起來怪怪的</summary><p>新輸入的文字會沿用前一個字元的不換行和間距。預設開啟的 2a 會先清除不換行再重新套用。間距的部分，勾選一次 14a 把追蹤歸零，再重新設定標題等手動調整過的追蹤。</p></details>
+    <details><summary>可以保留文件原本的設定嗎？</summary><p>可以。取消勾選某個選項，指令碼就不會更動那項設定。選項 6 和 7 預設為常見的書籍數值，輸入你自己的數字後會被記住。沒有勾選的選項，欄位內容會被忽略。</p></details>
+    <details><summary>Illustrator 不是英文版也能用嗎？</summary><p>可以。避頭尾規則內建在指令碼裡（複製自 Illustrator 的 Hard 設定），不依賴各語言版本的設定名稱。選項 10 會列出你的 Illustrator 和文件實際擁有的標點符號擠壓設定，名稱和段落面板上顯示的一樣。</p></details>
+    <details><summary>我自訂過含「-」的避頭尾設定，需要改掉嗎？</summary><p>不需要。指令碼用不換行讓含連字號的詞和標點保持在一起，不論段落使用哪個避頭尾設定都有效。你也可以把段落面板改回 Hard 或「無」；除非勾選選項 9，指令碼不會更動它。</p></details>
+    <details><summary>為什麼不用不斷行連字號（U+2011）？</summary><p>不用指令碼也有效，但文字裡就不再是一般的連字號，會影響搜尋、複製和其他羅馬字工具。指令碼保留原本的文字，只改變排版。</p></details>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Pe̍h-ōe-jī Layout Script 0.9.0 · 製作：<a href="https://linktr.ee/taibunkesimi" lang="nan-TW">Tâi-bûn Ke-si Mī</a></span>
+    <a href="https://github.com/PehoejiKesi/PehoejiLayoutScript">GitHub 原始碼</a>
+    <p id="rights" class="rights">本頁的台語範例文字 © <span lang="nan-TW">Tân Lûi</span>（<span lang="zh-Hant-TW">陳雷</span>），僅依授權給<span lang="nan-TW">Tá-káu Tâi-gí-bûn Chhiok-chìn Hia̍p-hōe</span>（<span lang="zh-Hant-TW">打狗台語文促進協會</span>）的許可使用，不得自由轉用。如果你 fork 這個專案，請移除範例文字。</p>
+  </div>
+</footer>
+
+<script src="../site.js"></script>
+</body>
+</html>

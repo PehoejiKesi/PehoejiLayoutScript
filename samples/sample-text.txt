@@ -1,0 +1,13 @@
+Pe̍h-ōe-jī Layout Script — sample text
+
+© Tân Lûi (陳雷). Used only under permission given to Tá-káu Tâi-gí-bûn
+Chhiok-chìn Hia̍p-hōe (打狗台語文促進協會); not free to reuse. If you fork
+this repository, remove this file and the sample text in index.html.
+
+[POJ / Pe̍h-ōe-jī]
+
+Iōng Lô-má-jī siá Tâi-gú ū chin chē iu-tiám. Tē-it, i ē-tàng oân-choân chèng-khak piáu-ta̍t Tâi-gú. Kóng ē chhut--lâi tio̍h siá ē chhut--lâi, siá ē chhut--lâi tio̍h tha̍k ē chhut--lâi. Tē-jī, i chin iông-ī o̍h. Jī-bó ē-hiáu, siaⁿ-tiāu lia̍h-chún, tio̍h ē-hiáu--ah. Í-keng ē-hiáu Tâi-gú ê lâng, kúi tiám-cheng, kúi-ji̍t tio̍h o̍h-ū. Kap hàn-jī pí--khí-lâi, thiⁿ-chha-tē. Hàn-jī sī siá Tiong-kok-ōe iōng--ê, bē-tàng oân-choân koh chèng-khak siá Tâi-gú. Tâi-bûn ê chiong-lâi èng-kai sī choân Lô-má-jī chiah ha̍p-lí. Lî-chhiáⁿ Lô-má-jī kap kok-chióng kok-chè gú-giân bûn-jī ke chin iông-ī thong-chiap.
+
+[Han-Lo / 漢羅]
+
+用羅馬字寫台語有真chē優點。第一，伊ē-tàng完全正確表達台語。講ē出--來tō寫ē出--來，寫ē出--來tio̍h讀ē出--來。第二，伊真容易學。字母ē曉，聲調lia̍h準，tio̍h ē曉--ah。已經ē曉講台語ê人，幾點鐘、幾日tio̍h學有。Kap漢字比--起-來，天差地。漢字是寫中國話用--ê，bē-tàng完全koh正確寫台語。台文ê將來應該是全羅馬字chiah合理。而且羅馬字kap各種國際語言文字ke真容易thong-chiap。
